@@ -1,10 +1,10 @@
 const router = require("express").Router();
 
 // MongoDB Model(s)
-const Workouts = require("../models/Workout.js");
+const Workout = require("../models/workout");
 
 router.get("/api/workouts", ({ body }, res) => {
-    Workouts.find({})
+    Workout.find({})
         .then(data => {
             res.json(data);
         })
@@ -15,7 +15,7 @@ router.get("/api/workouts", ({ body }, res) => {
 });
 
 router.put("/api/workouts/:id", ({ body }, res) => {
-    Workouts.insert(body)
+    Workout.create(body)
         .then(data => {
             res.json(data);
         })
@@ -25,16 +25,14 @@ router.put("/api/workouts/:id", ({ body }, res) => {
     // res.send("PUT /api/workouts");
 });
 
-router.post("/api/workouts", (req, res) => {
-    //   Transaction.find({})
-    //     .sort({ date: -1 })
-    //     .then(dbTransaction => {
-    //       res.json(dbTransaction);
-    //     })
-    //     .catch(err => {
-    //       res.status(400).json(err);
-    //     });
-    res.send("POST /api/workouts");
+router.post("/api/workouts", ({body}, res) => {
+    Workout.create(body)
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
 });
 
 router.get("/api/workouts/range", (req, res) => {
