@@ -1,28 +1,28 @@
 const router = require("express").Router();
 
 // MongoDB Model(s)
-// const Transaction = require("../models/transaction.js");
+const Workouts = require("../models/Workout.js");
 
 router.get("/api/workouts", ({ body }, res) => {
-    //   Transaction.create(body)
-    //     .then(dbTransaction => {
-    //       res.json(dbTransaction);
-    //     })
-    //     .catch(err => {
-    //       res.status(400).json(err);
-    //     });
-    console.log("GET /api/workouts");
+    Workouts.find({})
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+    // res.send("GET /api/workouts");
 });
 
-router.put("/api/workouts", ({ body }, res) => {
-    //   Transaction.insertMany(body)
-    //     .then(dbTransaction => {
-    //       res.json(dbTransaction);
-    //     })
-    //     .catch(err => {
-    //       res.status(400).json(err);
-    //     });
-    console.log("PUT /api/workouts");
+router.put("/api/workouts/:id", ({ body }, res) => {
+    Workouts.insert(body)
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+    // res.send("PUT /api/workouts");
 });
 
 router.post("/api/workouts", (req, res) => {
@@ -34,7 +34,7 @@ router.post("/api/workouts", (req, res) => {
     //     .catch(err => {
     //       res.status(400).json(err);
     //     });
-    console.log("POST /api/workouts");
+    res.send("POST /api/workouts");
 });
 
 router.get("/api/workouts/range", (req, res) => {
@@ -46,7 +46,7 @@ router.get("/api/workouts/range", (req, res) => {
     //     .catch(err => {
     //       res.status(400).json(err);
     //     });
-    console.log("GET /api/workouts/range");
+    res.send("GET /api/workouts/range");
 });
 
 module.exports = router;
