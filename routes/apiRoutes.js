@@ -51,16 +51,13 @@ router.post("/api/workouts", ({ body }, res) => {
 
 // getWorkoutsInRange()
 router.get("/api/workouts/range", (req, res) => {
-    // Workout.find()
     // Create data object sorted by dates
     // Sunday = _id: 1
-    // Monday = _id: 2
     Workout.aggregate([
         { $unwind: "$exercises" },
         {
             $group: {
                 _id: { $dayOfWeek: "$day" },
-                // otherName: {$toObjectId : "$_id"}
                 duration: { $sum: "$exercises.duration" },
                 weight: { $sum: "$exercises.weight" }
 
@@ -69,11 +66,30 @@ router.get("/api/workouts/range", (req, res) => {
         {
             $sort: { _id: 1 }
         }
-    ])
-        .then(dataByDay => {
+    ]).then(dataByDay => {
+        console.log("dataByDay: ", dataByDay)
+        Workout.aggregate(
+            [
+            { $unwind: "$exercises" },
+            {
+                $group: {
+                    _id: "$exercises.name",
+                    duration: { $sum: "$exercises.duration" },
+                    weight: { $sum: "$exercises.weight" }
 
-            res.json(dataByDay);
-        })
+                }
+            },
+            {
+                $sort: { _id: 1 }
+            }
+            ])
+            .then((dataByExercise => {
+
+                const data = { dataByDay, dataByExercise }
+                res.json(data);
+
+            }))
+    })
         .catch(err => {
             res.status(400).json(err);
         });
