@@ -39,7 +39,6 @@ router.put("/api/workouts/:id", ({ params: { id }, body }, res) => {
 // createWorkout()
 router.post("/api/workouts", ({ body }, res) => {
 
-    console.log("add new exercise: ", body);
     Workout.create(body)
         .then(data => {
             res.json(data);
@@ -67,7 +66,6 @@ router.get("/api/workouts/range", (req, res) => {
             $sort: { _id: 1 }
         }
     ]).then(dataByDay => {
-        console.log("dataByDay: ", dataByDay)
         Workout.aggregate(
             [
             { $unwind: "$exercises" },

@@ -194,12 +194,6 @@ function duration(data) {
     durations.push(exercise.duration)
   });
 
-  // data.forEach(workout => {
-  //   workout.forEach(exercise => {
-  //     durations.push(exercise.duration);
-  //   });
-  // });
-
   return durations;
 }
 
@@ -209,12 +203,6 @@ function calculateTotalWeight(data) {
   data.forEach(exercise => {
     total.push(exercise.weight)
   });
-
-  // data.forEach(workout => {
-  //   workout.forEach(exercise => {
-  //     total.push(exercise.weight);
-  //   });
-  // });
 
   return total;
 }
