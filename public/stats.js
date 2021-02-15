@@ -33,14 +33,9 @@ function generatePalette() {
   return arr;
 }
 function populateChart(data) {
-  console.log(data);
-
   let durations = duration(data);
-  console.log("durations: ", durations)
   let pounds = calculateTotalWeight(data);
-  console.log("pounds: ", pounds)
   let workouts = workoutNames(data.dataByExercise);
-  console.log("workouts: ", workouts)
 
   const colors = generatePalette();
 
@@ -201,15 +196,12 @@ function duration(data) {
     // Assign the duration to the corresponding array index that indicates the day of the week
     // ex. sunday -> durations[0], monday -> durations [1]
     durations.byDay[exercise._id - 1] = exercise.duration
-    console.log("duration() byDay -> exercise: ", exercise)
-
   });
 
   data.dataByExercise.forEach(exercise => {
     // Assign the duration to the corresponding array index that indicates the day of the week
     // ex. sunday -> durations[0], monday -> durations [1]
     durations.byExercise.push(exercise.duration)
-    console.log("duration() byExercise -> exercise: ", exercise)
   });
 
   return durations;
@@ -226,11 +218,11 @@ function calculateTotalWeight(data) {
     // ex. sunday -> durations[0], monday -> durations [1]
     total.byDay[exercise._id - 1] = exercise.weight
   });
-  
+
   data.dataByExercise.forEach(exercise => {
     // Assign the duration to the corresponding array index that indicates the day of the week
     // ex. sunday -> durations[0], monday -> durations [1]
-    total.byExercise.push(exercise.weight); 
+    total.byExercise.push(exercise.weight);
   });
 
   return total;
