@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 // Schema for Workout collection ("workouts" in mongoDB)
 const WorkoutSchema = new Schema({
 
-    day: Date,
+    day: { type: Date, default: Date.now},
     exercises: [{
         type: { type: String },
         name: String,
