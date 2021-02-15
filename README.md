@@ -3,6 +3,12 @@
 
 # Fitness Tracker
 
+Repo: https://github.com/zehrl/fitness-tracker
+
+Live App: https://ljz-fitness-tracker.herokuapp.com/
+
+---
+
 ## Table of Contents (Optional)
 * [Description](#Description)
 * [Instructions](#Instructions)
