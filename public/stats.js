@@ -196,8 +196,6 @@ function duration(data) {
     // Assign the duration to the corresponding array index that indicates the day of the week
     // ex. sunday -> durations[0], monday -> durations [1]
     durations[exercise._id - 1] = exercise.duration
-    
-    // durations.push(exercise.duration)
   });
 
   return durations;
@@ -207,7 +205,9 @@ function calculateTotalWeight(data) {
   let total = [];
 
   data.forEach(exercise => {
-    total.push(exercise.weight)
+    // Assign the duration to the corresponding array index that indicates the day of the week
+    // ex. sunday -> durations[0], monday -> durations [1]
+    total[exercise._id - 1] = exercise.weight
   });
 
   return total;
