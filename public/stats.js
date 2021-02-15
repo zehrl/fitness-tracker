@@ -190,8 +190,14 @@ function populateChart(data) {
 function duration(data) {
   let durations = [];
 
+  // switch case?
+
   data.forEach(exercise => {
-    durations.push(exercise.duration)
+    // Assign the duration to the corresponding array index that indicates the day of the week
+    // ex. sunday -> durations[0], monday -> durations [1]
+    durations[exercise._id - 1] = exercise.duration
+    
+    // durations.push(exercise.duration)
   });
 
   return durations;
